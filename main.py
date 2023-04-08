@@ -49,3 +49,5 @@ for i, ax in enumerate(axs.flatten()):
         ax.imshow(masked)
 
 plt.waitforbuttonpress()
+
+_.savefig("out.png")
