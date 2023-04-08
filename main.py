@@ -1,3 +1,5 @@
+import sys
+
 import torch
 import requests
 
@@ -30,7 +32,8 @@ img = transform(input_image).unsqueeze(0)
 
 
 # set prompt
-prompts = ["red", "bin", "wood", "a jar"]
+# prompts = ["red", "bin", "wood", "a jar"]
+prompts = sys.argv[1:]
 
 # prediction
 with torch.no_grad():
@@ -47,7 +50,5 @@ for i, ax in enumerate(axs.flatten()):
         masked = torch.sigmoid(pred[i-1][0])
         ax.text(0, -15, prompts[i-1])
         ax.imshow(masked)
-
-plt.waitforbuttonpress()
 
 _.savefig("out.png")
